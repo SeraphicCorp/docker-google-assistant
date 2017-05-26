@@ -40,7 +40,8 @@ RUN /env/bin/python -m pip install --upgrade https://github.com/googlesamples/as
     && /env/bin/python -m pip install google-assistant-sdk[samples]
 
 # Auhentication (needs user input) and launch google assistant
-CMD . /env/bin/activate \
+CMD cp /google-assistant/asoundrc.config /root/.asoundrc | true \
+    && . /env/bin/activate \
     && google-oauthlib-tool \
       --client-secrets /google-assistant/clientid.json \
       --scope https://www.googleapis.com/auth/assistant-sdk-prototype \
